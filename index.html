@@ -13,6 +13,7 @@
     <div class="greeting-section">
       <h1 id="greeting">Good Morning!</h1>
       <p id="datetime" class="datetime"></p>
+      <button class="name-edit-btn" id="nameEditBtn" title="Set your name">✏️ Set name</button>
     </div>
     <button class="theme-toggle" id="themeToggle" title="Toggle theme">
       <span id="themeIcon">🌙</span>
@@ -31,6 +32,11 @@
         <button class="btn btn-secondary" id="stopBtn" disabled>Stop</button>
         <button class="btn btn-ghost" id="resetBtn">Reset</button>
       </div>
+      <div class="timer-duration-row">
+        <label class="duration-label" for="durationInput">Duration (min)</label>
+        <input type="number" id="durationInput" class="input duration-input" min="1" max="120" value="25" />
+        <button class="btn btn-ghost" id="setDurationBtn">Set</button>
+      </div>
       <div class="timer-progress-bar">
         <div class="timer-progress-fill" id="timerProgressFill"></div>
       </div>
@@ -42,6 +48,13 @@
       <div class="todo-input-row">
         <input type="text" id="todoInput" class="input" placeholder="Add a new task..." maxlength="120" />
         <button class="btn btn-primary" id="addTodoBtn">Add</button>
+      </div>
+      <div class="todo-toolbar">
+        <span class="sort-label">Sort:</span>
+        <button class="btn btn-sort active" id="sortNone" data-sort="none">Default</button>
+        <button class="btn btn-sort" id="sortAZ" data-sort="az">A → Z</button>
+        <button class="btn btn-sort" id="sortZA" data-sort="za">Z → A</button>
+        <button class="btn btn-sort" id="sortDone" data-sort="done">Done last</button>
       </div>
       <ul class="todo-list" id="todoList"></ul>
       <p class="todo-empty" id="todoEmpty">No tasks yet. Add one above!</p>
@@ -72,6 +85,21 @@
       </div>
     </div>
   </div>
+
+  <!-- Set Name Modal -->
+  <div class="modal-overlay" id="nameModal">
+    <div class="modal">
+      <h3>What's your name?</h3>
+      <input type="text" id="nameInput" class="input" placeholder="Enter your name..." maxlength="40" />
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="saveNameBtn">Save</button>
+        <button class="btn btn-ghost" id="cancelNameBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
 
   <script src="app.js"></script>
 </body>
