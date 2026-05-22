@@ -1,0 +1,530 @@
+/* ===== CSS Variables ===== */
+:root {
+  /* Light mode */
+  --bg-page:        #e8f0fe;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f0f5ff;
+  --bg-input:       #f0f5ff;
+  --border:         #c5d5f5;
+  --text-primary:   #1a2340;
+  --text-secondary: #4a5a80;
+  --text-muted:     #8a9abf;
+  --accent:         #3b6ef5;
+  --accent-hover:   #2a5ae0;
+  --accent-light:   #dce8ff;
+  --danger:         #e05555;
+  --danger-hover:   #c43c3c;
+  --success:        #2ecc71;
+  --shadow:         0 2px 12px rgba(59, 110, 245, 0.10);
+  --shadow-card:    0 4px 24px rgba(59, 110, 245, 0.12);
+  --radius:         14px;
+  --radius-sm:      8px;
+  --transition:     0.2s ease;
+}
+
+[data-theme="dark"] {
+  --bg-page:        #0d1526;
+  --bg-card:        #152040;
+  --bg-card-hover:  #1c2d55;
+  --bg-input:       #1c2d55;
+  --border:         #2a3f6e;
+  --text-primary:   #e8f0fe;
+  --text-secondary: #9ab0e0;
+  --text-muted:     #5a7ab0;
+  --accent:         #5b8af8;
+  --accent-hover:   #7aa0ff;
+  --accent-light:   #1a2d55;
+  --danger:         #e06060;
+  --danger-hover:   #f07070;
+  --success:        #3de08a;
+  --shadow:         0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-card:    0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 40px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.greeting-section h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.datetime {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.theme-toggle {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.theme-toggle:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  transform: scale(1.08);
+}
+
+/* ===== Dashboard Grid ===== */
+.dashboard {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: auto auto;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 40px;
+}
+
+/* ===== Cards ===== */
+.card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+/* Timer card spans 1 column, 2 rows */
+.timer-card {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-card .card-title {
+  align-self: flex-start;
+}
+
+.todo-card {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.links-card {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* ===== Timer ===== */
+.timer-display {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 2px;
+  margin: 24px 0 28px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.timer-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.timer-progress-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent), #7aa0ff);
+  border-radius: 99px;
+  transition: width 1s linear;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), opacity var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--border);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--bg-input);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--danger);
+  border: none;
+  padding: 5px 8px;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-danger:hover {
+  background: rgba(224, 85, 85, 0.1);
+}
+
+.btn-edit {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 5px 8px;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-edit:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+/* ===== Inputs ===== */
+.input {
+  background: var(--bg-input);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 14px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--transition), background var(--transition);
+  width: 100%;
+}
+
+.input:focus {
+  border-color: var(--accent);
+  background: var(--bg-card);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ===== To-Do ===== */
+.todo-input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.todo-input-row .input {
+  flex: 1;
+}
+
+.todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.todo-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.todo-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-input);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  transition: background var(--transition), border-color var(--transition);
+  animation: slideIn 0.18s ease;
+}
+
+.todo-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.todo-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo-text {
+  flex: 1;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  word-break: break-word;
+  transition: color var(--transition);
+}
+
+.todo-item.done .todo-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.todo-actions {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.todo-empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-top: 16px;
+}
+
+/* ===== Quick Links ===== */
+.links-input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.links-input-row .input:first-child {
+  width: 130px;
+  flex: 0 0 130px;
+}
+
+.links-input-row .input:nth-child(2) {
+  flex: 1;
+  min-width: 160px;
+}
+
+.links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-light);
+  border: 1.5px solid var(--border);
+  border-radius: 99px;
+  padding: 7px 14px 7px 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  animation: slideIn 0.18s ease;
+}
+
+.link-chip:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.link-chip .link-favicon {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.link-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  padding: 0 0 0 4px;
+  line-height: 1;
+  transition: opacity var(--transition);
+}
+
+.link-remove:hover {
+  opacity: 1;
+}
+
+/* ===== Modal ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 50, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  width: 380px;
+  max-width: 90vw;
+  box-shadow: var(--shadow-card);
+  transform: translateY(10px);
+  transition: transform var(--transition);
+}
+
+.modal-overlay.active .modal {
+  transform: translateY(0);
+}
+
+.modal h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 780px) {
+  .header {
+    padding: 20px 20px 16px;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 0 20px 32px;
+    gap: 16px;
+  }
+
+  .timer-card {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .todo-card,
+  .links-card {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .timer-display {
+    font-size: 3.5rem;
+  }
+
+  .greeting-section h1 {
+    font-size: 1.5rem;
+  }
+}

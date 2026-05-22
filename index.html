@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="greeting-section">
+      <h1 id="greeting">Good Morning!</h1>
+      <p id="datetime" class="datetime"></p>
+    </div>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+      <span id="themeIcon">🌙</span>
+    </button>
+  </header>
+
+  <!-- Main Grid -->
+  <main class="dashboard">
+
+    <!-- Focus Timer -->
+    <section class="card timer-card">
+      <h2 class="card-title">Focus Timer</h2>
+      <div class="timer-display" id="timerDisplay">25:00</div>
+      <div class="timer-controls">
+        <button class="btn btn-primary" id="startBtn">Start</button>
+        <button class="btn btn-secondary" id="stopBtn" disabled>Stop</button>
+        <button class="btn btn-ghost" id="resetBtn">Reset</button>
+      </div>
+      <div class="timer-progress-bar">
+        <div class="timer-progress-fill" id="timerProgressFill"></div>
+      </div>
+    </section>
+
+    <!-- To-Do List -->
+    <section class="card todo-card">
+      <h2 class="card-title">To-Do List</h2>
+      <div class="todo-input-row">
+        <input type="text" id="todoInput" class="input" placeholder="Add a new task..." maxlength="120" />
+        <button class="btn btn-primary" id="addTodoBtn">Add</button>
+      </div>
+      <ul class="todo-list" id="todoList"></ul>
+      <p class="todo-empty" id="todoEmpty">No tasks yet. Add one above!</p>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="card links-card">
+      <h2 class="card-title">Quick Links</h2>
+      <div class="links-input-row">
+        <input type="text" id="linkName" class="input" placeholder="Label" maxlength="30" />
+        <input type="url" id="linkUrl" class="input" placeholder="https://..." />
+        <button class="btn btn-primary" id="addLinkBtn">Add</button>
+      </div>
+      <div class="links-grid" id="linksGrid"></div>
+      <p class="todo-empty" id="linksEmpty">No links yet. Add one above!</p>
+    </section>
+
+  </main>
+
+  <!-- Edit Task Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <h3>Edit Task</h3>
+      <input type="text" id="editInput" class="input" maxlength="120" />
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="saveEditBtn">Save</button>
+        <button class="btn btn-ghost" id="cancelEditBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
